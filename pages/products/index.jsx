@@ -5,9 +5,26 @@ import axios from 'axios';
 
 const Products = (props) => {
 
+    const printData = () => {
+        return props.products.map((val, idx) => {
+            return <div className='col-sm-4 col-lg-3 p-2' key={val.id}>
+                <div className='card'>
+                    <div className='card-body'>
+                        <span className='card-title fw-bold'>{val.name}</span>
+                    </div>
+                </div>
+            </div>
+        })
+    }
+
     return <div>
         <Navbar />
-        <h1>Products Page</h1>
+        <div className='container'>
+            <h1>Products Page</h1>
+            <div className='row'>
+                {printData()}
+            </div>
+        </div>
     </div>
 }
 
