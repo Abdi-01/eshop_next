@@ -7,19 +7,24 @@ import {
 } from '@chakra-ui/react';
 import FooterComponent from '../../components/Footer'
 import axios from 'axios';
+import Link from 'next/link';
 
 const Products = (props) => {
 
     const printData = () => {
         return props.products.map((val, idx) => {
             return <div className='col-12 col-sm-6 col-lg-4 ' key={val.id}>
-                <div className='card border-0 shadow rounded-3 btn p-0'>
-                    <Image src={val.images} boxSize='100%' objectFit='cover' alt={val.name}></Image>
-                </div>
-                <div className='card shadow bg-primary m-auto text-center py-2 position-relative' style={{ width: '80%', top: '-45px' }}>
-                    <Text fontSize="xl" className='fw-bold text-white'>Rp. {val.price.toLocaleString('id')}</Text>
-                    <Text fontSize="lg" className='text-white'>{val.name}</Text>
-                </div>
+                <Link href={`/products/detail?id=${val.id}`}>
+                    <div>
+                        <div className='card border-0 shadow rounded-3 btn p-0'>
+                            <Image src={val.images} boxSize='100%' objectFit='cover' alt={val.name}></Image>
+                        </div>
+                        <div className='card shadow bg-primary m-auto text-center py-2 position-relative' style={{ width: '80%', top: '-45px' }}>
+                            <Text fontSize="xl" className='fw-bold text-white'>Rp. {val.price.toLocaleString('id')}</Text>
+                            <Text fontSize="lg" className='text-white'>{val.name}</Text>
+                        </div>
+                    </div>
+                </Link>
             </div>
         })
     }
